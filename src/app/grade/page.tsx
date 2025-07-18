@@ -2,8 +2,10 @@
 import { Button } from '@/components/ui/button';
 import { registerUser } from '@/lib/ClerkUserData';
 import { getUserId } from '@/lib/ClerkUserId';
+import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const SelectGrade = () => {
   const router = useRouter();
@@ -14,7 +16,18 @@ const SelectGrade = () => {
       const userId = await getUserId();
       localStorage.setItem('grade', grade);
       await registerUser(grade);
-      router.push(`/dashboard/${userId}`);
+      try {
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_BACKEND_DB_URL}/store_level`
+        );
+        if (response.status === 200) {
+          console.log(response.data.data);
+          router.push(`/dashboard/${userId}`);
+        }
+      } catch (error) {
+        console.log('error in stroing level', error);
+        toast.error('error in storing level');
+      }
     }
   };
 

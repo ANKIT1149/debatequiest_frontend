@@ -1,10 +1,12 @@
-
+"use client"
 import React from 'react';
 import { Button } from '../ui/button';
 import Image from 'next/image';
-
+import { useRouter } from 'next/navigation';
 
 const HomeBanner = () => {
+  const router = useRouter()
+
   return (
     <div className="w-full h-[90vh] overflow-hidden animate-bg flex justify-center items-center gap-20">
       <div className="mr-5 ">
@@ -20,7 +22,7 @@ const HomeBanner = () => {
           interactive, and age-appropriate content.
         </p>
         <div className="flex mt-10 justify-between items-center gap-10">
-          <Button className="w-[300px] cursor-pointer bg-amber-800 hover:bg-transparent hover:border-2 hover:border-amber-800 h-[50px] hover:shadow-inner text-xl font-light font-serif">
+          <Button onClick={() => router.push("/subscription")} className="w-[300px] cursor-pointer bg-amber-800 hover:bg-transparent hover:border-2 hover:border-amber-800 h-[50px] hover:shadow-inner text-xl font-light font-serif">
             Start Learning
           </Button>
           <Button className="w-[300px] cursor-pointer bg-transparent  hover:bg-red-800 border-2 border-red-800 h-[50px] hover:shadow-inner hover:shadow-red-800 transition-all text-xl font-light font-serif">

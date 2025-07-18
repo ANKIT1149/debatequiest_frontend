@@ -1,9 +1,11 @@
-import { LucideTag } from 'lucide-react';
+
 import React from 'react';
 import { Button } from '../ui/button';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const AboutCard = () => {
+  const router = useRouter();
   return (
     <div className="flex justify-center items-center mt-10 mb-10">
       <div className="w-[1200px] flex justify-between h-[400px] border-2 border-[#464866] bg-[#464866] rounded-3xl">
@@ -29,7 +31,7 @@ const AboutCard = () => {
             we are revolutionizing quizzes for everyone. See what drives us!
           </p>
           <div className="mt-5 flex justify-center mx-auto items-center">
-            <Button className="w-[300px] hover:shadow-inner hover:shadow-amber-500 bg-[#2e9cca] h-[50px] hover:border-2 hover:border-[#101010] hover:bg-transparent hover:scale-95 tranisition-all cursor-pointer">
+            <Button onClick={() => router.push("/about")} className="w-[300px] hover:shadow-inner hover:shadow-amber-500 bg-[#2e9cca] h-[50px] hover:border-2 hover:border-[#101010] hover:bg-transparent hover:scale-95 tranisition-all cursor-pointer">
               Know More About Us
             </Button>
           </div>

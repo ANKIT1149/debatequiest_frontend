@@ -36,9 +36,21 @@ const Navbar = () => {
             </Link>
           </div>
         ))}
+        {/* <Link
+          href={`/dashboard/${userId}`}
+          className={cn(
+            pathname === `/dashboard/${userId}`
+              ? 'text-[#3E362E]  border-b-2 border-[#AFFDE5] text-[20px] mt-2'
+              : 'font-serif font-semibold text-white text-[20px] mt-2'
+          )}
+        >
+          Dashboard
+        </Link> */}
         <SignedOut>
           <SignInButton>
-            <button className="cursor-pointer w-[100px] border-2 border-white rounded-full hover:border-4 hover:text-white transition-all hover:border-red-800 hover:bg-red-600">Sign In</button>
+            <button className="cursor-pointer w-[100px] border-2 border-white rounded-full hover:border-4 hover:text-white transition-all hover:border-red-800 hover:bg-red-600">
+              Sign In
+            </button>
           </SignInButton>
           <SignUpButton>
             <button className="bg-[#6c47ff] text-white rounded-full font-medium text-sm sm:text-base hover:bg-transparent hover:border-4 hover:border-purple-700 transition-all h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">

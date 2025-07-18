@@ -21,7 +21,7 @@ const QuizLevel: React.FC = () => {
   );
   const {id} = useParams();
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
-  const initialTime = 5 * 60;
+  const initialTime = 15 * 60;
   const [timeLeft, setTimeLeft] = useState(initialTime);
   const [isTimeEnd, setTImeEnd] = useState(false);
 

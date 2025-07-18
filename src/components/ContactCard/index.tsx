@@ -2,8 +2,10 @@
 import Image from 'next/image';
 import React from 'react';
 import { Button } from '../ui/button';
+import { useRouter } from 'next/navigation';
 
 const ContactCard = () => {
+  const router = useRouter();
   return (
     <div className="w-full h-[90vh] bg-[#3d3a37] flex justify-between items-center">
       <div className="mx-10 px-5">
@@ -18,7 +20,7 @@ const ContactCard = () => {
           your organization and gain unprecedented visibility into student
           performance.
         </p>
-        <Button className="mx-auto mt-8 w-[300px] h-[50px] border-2 cursor-pointer hover:shadow-2xl hover:shadow-amber-950 hover:scale-105 transition-[0.5s] border-red-800 bg-red-800 hover:bg-transparent">
+        <Button onClick={() => router.push("/contact")} className="mx-auto mt-8 w-[300px] h-[50px] border-2 cursor-pointer hover:shadow-2xl hover:shadow-amber-950 hover:scale-105 transition-[0.5s] border-red-800 bg-red-800 hover:bg-transparent">
           Contact Us
         </Button>
       </div>

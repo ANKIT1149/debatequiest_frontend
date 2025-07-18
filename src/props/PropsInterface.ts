@@ -68,9 +68,37 @@ export interface dashboardBadges{
         hidden: { y: number; opacity: number }
         visible: { y: number; opacity: number; transition: { duration: number; type: string } }
     }
+}
 
-    badges: {
-        title: string;
-        icon: React.ReactNode;
-    }[]
+export interface takenQuiz {
+    title: string,
+    level: string,
+    score: 3,
+    quizId: string
+}
+
+export interface propquiz{
+    takenquiz: takenQuiz[]
+}
+
+export interface profiledisplayquiz{
+    percentage: number,
+    taken_quiz: number,
+    total_score: number
+}
+
+export interface bookmarkedQuiz{
+    title: string,
+    level: string,
+    quizId: string
+}
+
+export interface levelProps{
+    Level: number,
+    Exp: number,
+    Badges?: []
+}
+
+export interface aigeneratedprop{
+    generatedQuizData: quizInterface[]
 }

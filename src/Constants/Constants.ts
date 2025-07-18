@@ -11,13 +11,18 @@ export const navLinks = [
         name: "About"
     },
     {
-        link: "/help",
+        link: "/contact",
         name: "Support & Faq"
     },
     {
         link: "/subscription",
         name: "Subscription"
     },
+    
+    {
+        link: "/leaderboard",
+        name: "LeaderBoard"
+    }
    
 ]
 

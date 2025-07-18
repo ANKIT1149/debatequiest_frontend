@@ -2,8 +2,11 @@ import { LucideSearch } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 import { Button } from '../ui/button';
+import { useRouter } from 'next/navigation';
 
 const ResponseCard = () => {
+  const router = useRouter();
+
   return (
     <div className="w-full h-[90vh] bg-[#212A31] flex justify-between items-center">
       <div className="mx-10 mt-2">
@@ -36,7 +39,7 @@ const ResponseCard = () => {
           futuristic interface makes creation seamless and fun. Design, debate,
           and discover – your perfect quiz is just a few clicks away.
         </p>
-        <Button className='mx-auto mt-8 w-[300px] h-[50px] border-2 cursor-pointer hover:shadow-2xl hover:shadow-amber-950 hover:scale-105 transition-[0.5s] border-amber-800 bg-amber-800 hover:bg-transparent'>Generate Your Own Quiz</Button>
+        <Button onClick={() => router.push("/generate_quiz")} className='mx-auto mt-8 w-[300px] h-[50px] border-2 cursor-pointer hover:shadow-2xl hover:shadow-amber-950 hover:scale-105 transition-[0.5s] border-amber-800 bg-amber-800 hover:bg-transparent'>Generate Your Own Quiz</Button>
       </div>
     </div>
   );

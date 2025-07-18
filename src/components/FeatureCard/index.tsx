@@ -2,8 +2,10 @@ import { LucideTag } from 'lucide-react';
 import React from 'react';
 import { Button } from '../ui/button';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const FeatureCard = () => {
+  const router = useRouter();
   return (
     <div className="flex justify-center items-center mt-10 mb-10">
       <div className="w-[1200px] flex justify-between h-[400px] border-2 border-[#376e6f] bg-[#376e6f] rounded-3xl">
@@ -28,7 +30,7 @@ const FeatureCard = () => {
             elevate your debating skills.
           </p>
           <div className="mt-5 flex justify-center mx-auto items-center">
-            <Button className="w-[300px] bg-[#2f4454] hover:border-2 hover:border-[#101010] hover:bg-transparent hover:scale-95 tranisition-all cursor-pointer">
+            <Button onClick={() => router.push("/start_debate")} className="w-[300px] bg-[#2f4454] hover:border-2 hover:border-[#101010] hover:bg-transparent hover:scale-95 tranisition-all cursor-pointer">
               Try Our AI
             </Button>
           </div>

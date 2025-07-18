@@ -4,6 +4,9 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import AnimatedParticle from '../AnimatedParticle';
+import toast from 'react-hot-toast';
+import axios from 'axios';
 
 const Support = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -12,47 +15,43 @@ const Support = () => {
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
 
   // Form state
-  const [formData, setFormData] = useState({ name: '', subject: '', issue: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    query: '',
+    issue: '',
+  });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async(e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    // Handle form submission (e.g., send to API)
-    console.log('Form submitted:', formData);
+    try {
+      const response = await axios.post("/api/contact_us", formData)
+      if (response.status === 200) {
+        toast.success("Contact Form Submitted Successfully")
+        setFormData({ name: '', email: '', query: '', issue: '' });
+      }
+    } catch (error) {
+      console.log("Error in Sending Contact Form", error)
+      toast.error("COntact  Form Submission Failed")
+    }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-blue-900 text-white overflow-hidden">
       {/* Dynamic Background with Animated Particles (Same as About Page) */}
-      <div className="fixed inset-0 pointer-events-none">
-        {[...Array(50)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute bg-blue-500 rounded-full opacity-30"
-            style={{
-              width: Math.random() * 5 + 2,
-              height: Math.random() * 5 + 2,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -1000],
-              opacity: [0.3, 0, 0.3],
-            }}
-            transition={{
-              duration: Math.random() * 20 + 10,
-              repeat: Infinity,
-              ease: 'linear',
-            }}
-          />
-        ))}
-      </div>
+      <AnimatedParticle />
 
       {/* Main Content */}
-      <div ref={ref} className="relative container mx-auto px-10 py-16 mt-[100px]">
+      <div
+        ref={ref}
+        className="relative container mx-auto px-10 py-16 mt-[100px]"
+      >
         {/* Banner Section */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"
@@ -75,11 +74,16 @@ const Support = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              Got questions or need help? Our team is here to assist you in navigating the DebateQuest universe. Reach out, and lets resolve your queries with speed and precision.
+              Got questions or need help? Our team is here to assist you in
+              navigating the DebateQuest universe. Reach out, and lets resolve
+              your queries with speed and precision.
             </motion.p>
             <motion.button
               className="mt-6 px-6 py-3 bg-blue-600 rounded-full text-lg font-semibold hover:bg-blue-700 w-fit"
-              whileHover={{ scale: 1.1, boxShadow: '0 0 20px rgba(59, 130, 246, 0.7)' }}
+              whileHover={{
+                scale: 1.1,
+                boxShadow: '0 0 20px rgba(59, 130, 246, 0.7)',
+              }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -90,13 +94,19 @@ const Support = () => {
           </div>
           {/* Right Side: Image */}
           <motion.div
-            className="relative"
+            className="relative overflow-hidden"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 1 }}
           >
             <div className="w-full h-64 md:h-96 bg-gray-800/50 backdrop-blur-md rounded-lg border border-blue-500/30 flex items-center justify-center">
-              <Image src="https://www.xcally.com/wp-content/uploads/2023/05/omnichannel-contact-center2-1.jpg" alt='banner' width={700} height={100} className='h-[365px] rounded-2xl' />
+              <Image
+                src="https://www.xcally.com/wp-content/uploads/2023/05/omnichannel-contact-center2-1.jpg"
+                alt="banner"
+                width={700}
+                height={100}
+                className="h-[365px] rounded-2xl"
+              />
             </div>
             <motion.div
               className="absolute inset-0 bg-blue-500/20 rounded-lg"
@@ -118,7 +128,9 @@ const Support = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            <h2 className="text-3xl font-bold text-blue-400 mb-6">Connect With Us</h2>
+            <h2 className="text-3xl font-bold text-blue-400 mb-6">
+              Connect With Us
+            </h2>
             <div className="space-y-4 mt-10">
               <motion.div
                 className="flex items-center gap-3"
@@ -142,7 +154,9 @@ const Support = () => {
                 transition={{ type: 'spring', stiffness: 300 }}
               >
                 <FaMapMarkerAlt className="text-blue-400 text-xl" />
-                <p className="text-gray-300">123 Cosmic Avenue, Nebula City, 90210</p>
+                <p className="text-gray-300">
+                  123 Cosmic Avenue, Nebula City, 90210
+                </p>
               </motion.div>
             </div>
           </motion.div>
@@ -154,11 +168,14 @@ const Support = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.8 }}
           >
-            <h2 className="text-3xl font-bold text-blue-400 mb-6">Submit Your Query</h2>
+            <h2 className="text-3xl font-bold text-blue-400 mb-6">
+              Submit Your Query
+            </h2>
             <div className="space-y-6">
               {[
                 { label: 'Name', name: 'name', type: 'text' },
-                { label: 'Subject', name: 'subject', type: 'text' },
+                { label: 'Email', name: 'email', type: 'email' },
+                { label: 'Query Title', name: 'query', type: 'text' },
                 { label: 'Issue', name: 'issue', type: 'textarea' },
               ].map((field, index) => (
                 <motion.div
@@ -167,7 +184,9 @@ const Support = () => {
                   whileHover={{ scale: 1.02 }}
                   transition={{ type: 'spring', stiffness: 300 }}
                 >
-                  <label className="text-gray-400 mb-1 block">{field.label}</label>
+                  <label className="text-gray-400 mb-1 block">
+                    {field.label}
+                  </label>
                   {field.type === 'textarea' ? (
                     <textarea
                       name={field.name}
@@ -195,7 +214,10 @@ const Support = () => {
               ))}
               <motion.button
                 className="w-full px-6 cursor-pointer py-3 bg-blue-600 rounded-full text-lg font-semibold hover:bg-blue-700"
-                whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(59, 130, 246, 0.7)' }}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: '0 0 20px rgba(59, 130, 246, 0.7)',
+                }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleSubmit}
               >

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { redirect, useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SendHorizonal } from 'lucide-react';
 import { Input } from '@/components/ui/input';
@@ -23,7 +23,6 @@ interface avatar {
 }
 
 export default function DebateChat() {
-  const router = useRouter();
   const { id: sessionId } = useParams();
 
   const [messages, setMessages] = useState<Message[]>([]);
