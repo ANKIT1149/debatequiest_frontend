@@ -18,7 +18,7 @@ const SelectGrade = () => {
       await registerUser(grade);
       try {
         const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_BACKEND_DB_URL}/store_level`
+          `${process.env.NEXT_PUBLIC_BACKEND_DB_URL}/store_level`, {userId, grade}
         );
         if (response.status === 200) {
           console.log(response.data.data);
