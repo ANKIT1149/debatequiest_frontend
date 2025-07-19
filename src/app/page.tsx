@@ -13,6 +13,8 @@ import Footer from '@/components/Footer';
 import { useEffect } from 'react';
 import { getUserId } from '@/lib/ClerkUserId';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const Page = () => {
   const router = useRouter();
@@ -27,6 +29,29 @@ const Page = () => {
 
     checkingClient();
   }, []);
+
+  useEffect(() => {
+    const store_level = async () => {
+      const grade = localStorage.getItem("grade")
+      if (grade) {
+        const userId = await getUserId()
+         try {
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_BACKEND_DB_URL}/store_level`, {userId, grade}
+        );
+        if (response.status === 200) {
+          console.log(response.data.data);
+          router.push(`/dashboard/${userId}`);
+        }
+      } catch (error) {
+        console.log('error in stroing level', error);
+        toast.error('error in storing level');
+      }
+      }
+    }
+
+    store_level();
+  }, [])
   return (
     <div>
       <HomeBanner />
