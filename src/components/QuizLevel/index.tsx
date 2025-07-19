@@ -89,7 +89,7 @@ const QuizLevel: React.FC = () => {
       const userId = await getUserId();
       console.log(userId);
 
-      const response = await axios.post(`http://127.0.0.1:8000/submit_quiz`, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_DB_URL}/submit_quiz`, {
         userId: userId,
         quizId: id,
         level: Level,
