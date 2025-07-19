@@ -1,20 +1,50 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { registerUser } from '@/lib/ClerkUserData';
+import { getUserId } from '@/lib/ClerkUserId';
+import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const SelectGrade = () => {
   const router = useRouter();
   const [grade, setGrade] = useState('');
+  const [isComplete, setIsComplete] = useState(false);
 
   const handleSubmit = async () => {
     if (grade) {
       localStorage.setItem('grade', grade);
       await registerUser(grade);
-      router.push("/")
+      setIsComplete(true);
     }
   };
+
+  useEffect(() => {
+    const store_level = async () => {
+      const grade = localStorage.getItem('grade');
+      if (grade) {
+        const userId = await getUserId();
+        try {
+          const response = await axios.post(
+            `${process.env.NEXT_PUBLIC_BACKEND_DB_URL}/store_level`,
+            { userId, grade }
+          );
+          if (response.status === 200) {
+            console.log(response.data.data);
+            router.push(`/dashboard/${userId}`);
+          }
+        } catch (error) {
+          console.log('error in stroing level', error);
+          toast.error('error in storing level');
+        }
+      }
+    };
+
+    if (isComplete) {
+      store_level();
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6 flex justify-center items-center flex-col">
