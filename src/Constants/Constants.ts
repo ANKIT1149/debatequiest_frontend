@@ -1,5 +1,4 @@
 import { LucideBookCopy, LucideComputer, LucideUserCircle } from "lucide-react"
-import { title } from "process"
 
 export const navLinks = [
     {
