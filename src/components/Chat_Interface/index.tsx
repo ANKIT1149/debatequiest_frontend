@@ -130,17 +130,14 @@ export default function DebateChat() {
           whilehover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <motion.span
-            animate={{ rotate: loading ? 360 : 0 }}
-            transition={{ duration: 1, repeat: loading ? Infinity : 0 }}
-          >
+          <motion.span>
             End Debate
           </motion.span>
         </Button>
       </div>
 
       {/* Chat Section */}
-      <section className="relative top-[90px] z-[5px] flex-1 overflow-y-auto p-6 space-y-6 w-[1200px]">
+      <section className="relative top-[100px] z-[5px] flex-1 overflow-y-auto p-6 space-y-6 w-[1200px]">
         <AnimatePresence>
           {messages.map((msg, idx) => (
             <motion.div

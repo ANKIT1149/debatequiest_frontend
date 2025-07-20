@@ -13,8 +13,6 @@ import Footer from '@/components/Footer';
 import { useEffect } from 'react';
 import { getUserId } from '@/lib/ClerkUserId';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
-import toast from 'react-hot-toast';
 
 const Page = () => {
   const router = useRouter();
