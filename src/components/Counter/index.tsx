@@ -5,9 +5,9 @@ import CountUp from 'react-countup';
 const NumberCounter = () => {
   return (
     <div className="mt-10 flex justify-center items-center mb-10">
-      <div className="w-[1300px] shadow-2xl px-10 bg-amber-800 shadow-black h-[120px] rounded-2xl flex justify-between items-center">
+      <div className="w-[1300px] max-md:w-[95%] shadow-2xl px-10 max-md:py-5 bg-amber-800 shadow-black h-[120px] rounded-2xl max-md:flex-col max-md:h-auto flex justify-between items-center">
         {CountSection.map((item) => (
-          <div key={item.count}>
+          <div key={item.count} className='max-md:mt-8 max-md:mb-8'>
             <div className="flex justify-center items-center gap-3 mt-1">
               <CountUp
                 start={0}
@@ -23,7 +23,7 @@ const NumberCounter = () => {
                 {item.title}
               </h4>
             </div>
-            <hr className=" transform rotate-[90deg] relative left-[280px] bottom-[40px] w-[110px]" />
+            <hr className=" transform rotate-[90deg] max-md:rotate-0 relative left-[280px] max-md:left-0 bottom-[40px] max-md:bottom-[-40px] w-[110px] max-md:w-[350px]" />
           </div>
         ))}
       </div>

@@ -8,14 +8,14 @@ const AboutCard = () => {
   const router = useRouter();
   return (
     <div className="flex justify-center items-center mt-10 mb-10">
-      <div className="w-[1200px] flex justify-between h-[400px] border-2 border-[#464866] bg-[#464866] rounded-3xl">
-        <div className="my-auto ml-10">
+      <div className="w-[1200px] max-md:w-[96%] max-md:h-auto max-md:flex-col flex justify-between h-[400px] border-2 border-[#464866] bg-[#464866] rounded-3xl">
+        <div className="my-auto ml-10 max-md:ml-7 max-md:mt-7">
           <Image
             src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https://substack-post-media.s3.amazonaws.com/public/images/d9de33d5-f786-406b-866c-4e8086819787_1280x720.jpeg"
             alt="ai"
             width={200}
             height={300}
-            className="w-[400px] h-[300px] rounded-3xl cursor-pointer hover:scale-115 transition-all"
+            className="w-[400px] max-md:w-[300px] h-[300px] rounded-3xl cursor-pointer hover:scale-115 transition-all"
           />
         </div>
         <div className="mt-10 mx-5 px-5">
@@ -31,7 +31,7 @@ const AboutCard = () => {
             we are revolutionizing quizzes for everyone. See what drives us!
           </p>
           <div className="mt-5 flex justify-center mx-auto items-center">
-            <Button onClick={() => router.push("/about")} className="w-[300px] hover:shadow-inner hover:shadow-amber-500 bg-[#2e9cca] h-[50px] hover:border-2 hover:border-[#101010] hover:bg-transparent hover:scale-95 tranisition-all cursor-pointer">
+            <Button onClick={() => router.push("/about")} className="w-[300px] max-md:mb-8 hover:shadow-inner hover:shadow-amber-500 bg-[#2e9cca] h-[50px] hover:border-2 hover:border-[#101010] hover:bg-transparent hover:scale-95 tranisition-all cursor-pointer">
               Know More About Us
             </Button>
           </div>

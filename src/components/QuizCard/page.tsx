@@ -117,15 +117,15 @@ const QuizCard = () => {
   };
 
   return (
-    <div className="mt-20 mb-20 px-20">
-      <h1 className="text-4xl font-serif border-b-2 w-fit border-red-800">
+    <div className="mt-20 mb-20 px-20 max-md:px-2">
+      <h1 className="text-4xl max-md:text-2xl font-serif border-b-2 w-fit border-red-800">
         Our Popular Quizzes
       </h1>
-      <div className="mt-5 p-2 flex justify-center items-center gap-8">
+      <div className="mt-5 p-2 flex justify-center items-center gap-8 max-md:flex-col max-md:gap-5">
         {quizdata?.map((quiz) => (
           <div
             key={quiz.id}
-            className={`w-[500px] h-[450px] border-2 rounded-3xl hover:scale-110 cursor-pointer transition-all`}
+            className={`w-[500px] max-md:w-[98%] h-[450px] max-md:h-auto max-md:mb-8 border-2 rounded-3xl hover:scale-110 cursor-pointer transition-all`}
             style={{
               borderColor:
                 quiz.level === 'Beginner'
@@ -179,7 +179,7 @@ const QuizCard = () => {
                 <Button
                   onClick={() => handleQuiz(quiz.quizId, quiz.level)}
                   value={quiz.level}
-                  className="w-[400px] bg-amber-800 border-2 border-amber-800 hover:bg-transparent cursor-pointer"
+                  className="w-[400px] max-md:w-[90%] max-md:mb-10 bg-amber-800 border-2 border-amber-800 hover:bg-transparent cursor-pointer"
                   disabled={isLoading}
                 >
                   {isLoading ? 'Loading Quiz' : 'Take Quiz'}

@@ -10,13 +10,11 @@ import toast from 'react-hot-toast';
 const SelectGrade = () => {
   const router = useRouter();
   const [grade, setGrade] = useState('');
-  const [isComplete, setIsComplete] = useState(false);
 
   const handleSubmit = async () => {
     if (grade) {
       localStorage.setItem('grade', grade);
       await registerUser(grade);
-      setIsComplete(true);
     }
   };
 
@@ -41,10 +39,8 @@ const SelectGrade = () => {
       }
     };
 
-    if (isComplete) {
-      store_level();
-    }
-  }, []);
+    store_level();
+  }, [handleSubmit]);
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6 flex justify-center items-center flex-col">
