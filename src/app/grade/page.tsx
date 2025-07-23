@@ -4,7 +4,7 @@ import { registerUser } from '@/lib/ClerkUserData';
 import { getUserId } from '@/lib/ClerkUserId';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import {useState } from 'react';
 import toast from 'react-hot-toast';
 
 const SelectGrade = () => {
@@ -15,15 +15,8 @@ const SelectGrade = () => {
     if (grade) {
       localStorage.setItem('grade', grade);
       await registerUser(grade);
-    }
-  };
-
-  useEffect(() => {
-    const store_level = async () => {
-      const grade = localStorage.getItem('grade');
-      if (grade) {
-        const userId = await getUserId();
-        try {
+      const userId = await getUserId();
+      try {
           const response = await axios.post(
             `${process.env.NEXT_PUBLIC_BACKEND_DB_URL}/store_level`,
             { userId, grade }
@@ -38,9 +31,6 @@ const SelectGrade = () => {
         }
       }
     };
-
-    store_level();
-  }, [handleSubmit]);
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6 flex justify-center items-center flex-col">
